@@ -41,6 +41,7 @@ public class BzhStoreController extends BaseController
     @GetMapping("/list")
     public TableDataInfo list(BzhStore bzhStore)
     {
+
         startPage();
         List<BzhStore> list = bzhStoreService.selectBzhStoreList(bzhStore);
         return getDataTable(list);
