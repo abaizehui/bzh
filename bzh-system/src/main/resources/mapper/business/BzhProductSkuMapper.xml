@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bzh.business.mapper.BzhProductSkuMapper">
+    
+    <resultMap type="BzhProductSku" id="BzhProductSkuResult">
+        <result property="id"    column="id"    />
+        <result property="productId"    column="product_id"    />
+        <result property="variant"    column="variant"    />
+        <result property="price"    column="price"    />
+        <result property="stockQuantity"    column="stock_quantity"    />
+        <result property="isActive"    column="is_active"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="remark"    column="remark"    />
+    </resultMap>
+
+    <sql id="selectBzhProductSkuVo">
+        select id, product_id, variant, price, stock_quantity, is_active, create_by, create_time, update_by, update_time, remark from bzh_product_sku
+    </sql>
+
+    <select id="selectBzhProductSkuList" parameterType="BzhProductSku" resultMap="BzhProductSkuResult">
+        <include refid="selectBzhProductSkuVo"/>
+        <where>  
+            <if test="productId != null "> and product_id = #{productId}</if>
+            <if test="isActive != null "> and is_active = #{isActive}</if>
+        </where>
+    </select>
+    
+    <select id="selectBzhProductSkuById" parameterType="Long" resultMap="BzhProductSkuResult">
+        <include refid="selectBzhProductSkuVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertBzhProductSku" parameterType="BzhProductSku" useGeneratedKeys="true" keyProperty="id">
+        insert into bzh_product_sku
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="productId != null">product_id,</if>
+            <if test="variant != null and variant != ''">variant,</if>
+            <if test="price != null">price,</if>
+            <if test="stockQuantity != null">stock_quantity,</if>
+            <if test="isActive != null">is_active,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="productId != null">#{productId},</if>
+            <if test="variant != null and variant != ''">#{variant},</if>
+            <if test="price != null">#{price},</if>
+            <if test="stockQuantity != null">#{stockQuantity},</if>
+            <if test="isActive != null">#{isActive},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+         </trim>
+    </insert>
+
+    <update id="updateBzhProductSku" parameterType="BzhProductSku">
+        update bzh_product_sku
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="productId != null">product_id = #{productId},</if>
+            <if test="variant != null and variant != ''">variant = #{variant},</if>
+            <if test="price != null">price = #{price},</if>
+            <if test="stockQuantity != null">stock_quantity = #{stockQuantity},</if>
+            <if test="isActive != null">is_active = #{isActive},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBzhProductSkuById" parameterType="Long">
+        delete from bzh_product_sku where id = #{id}
+    </delete>
+
+    <delete id="deleteBzhProductSkuByIds" parameterType="String">
+        delete from bzh_product_sku where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
