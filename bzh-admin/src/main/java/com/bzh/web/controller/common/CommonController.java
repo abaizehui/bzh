@@ -23,7 +23,7 @@ import com.bzh.framework.config.ServerConfig;
 
 /**
  * 通用请求处理
- * 
+ *
  * @author bzh
  */
 @RestController
@@ -39,7 +39,7 @@ public class CommonController
 
     /**
      * 通用下载请求
-     * 
+     *
      * @param fileName 文件名称
      * @param delete 是否删除
      */
@@ -148,7 +148,7 @@ public class CommonController
             // 本地资源路径
             String localPath = BzhConfig.getProfile();
             // 数据库资源地址
-            String downloadPath = localPath + StringUtils.substringAfter(resource, Constants.RESOURCE_PREFIX);
+            String downloadPath = localPath + StringUtils.substringAfter(resource, Constants.   RESOURCE_PREFIX);
             // 下载名称
             String downloadName = StringUtils.substringAfterLast(downloadPath, "/");
             response.setContentType(MediaType.APPLICATION_OCTET_STREAM_VALUE);
