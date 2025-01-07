@@ -23,7 +23,7 @@ import com.bzh.common.core.page.TableDataInfo;
 
 /**
  * 门店Controller
- * 
+ *
  * @author bzh
  * @date 2025-01-04
  */
@@ -33,6 +33,15 @@ public class BzhStoreController extends BaseController
 {
     @Autowired
     private IBzhStoreService bzhStoreService;
+
+    /**
+     * 查询门店列表
+     */
+    @GetMapping("/listAll")
+    public AjaxResult listAll()
+    {
+        return success(bzhStoreService.selectBzhStoreList(new BzhStore()));
+    }
 
     /**
      * 查询门店列表
