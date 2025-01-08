@@ -40,7 +40,9 @@ public class BzhStoreController extends BaseController
     @GetMapping("/listAll")
     public AjaxResult listAll()
     {
-        return success(bzhStoreService.selectBzhStoreList(new BzhStore()));
+        BzhStore bzhStore = new BzhStore();
+        bzhStore.setStatus("0");
+        return success(bzhStoreService.selectBzhStoreList(bzhStore));
     }
 
     /**

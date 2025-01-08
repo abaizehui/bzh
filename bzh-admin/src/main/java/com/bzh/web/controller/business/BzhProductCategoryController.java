@@ -23,7 +23,7 @@ import com.bzh.common.core.page.TableDataInfo;
 
 /**
  * 产品类目Controller
- * 
+ *
  * @author bzh
  * @date 2025-01-04
  */
@@ -33,6 +33,16 @@ public class BzhProductCategoryController extends BaseController
 {
     @Autowired
     private IBzhProductCategoryService bzhProductCategoryService;
+
+    /**
+     * 查询所有产品类目列表
+     */
+    @GetMapping("/listAll")
+    public AjaxResult listAll()
+    {
+        List<BzhProductCategory> list = bzhProductCategoryService.selectBzhProductCategoryList(new BzhProductCategory());
+        return success(list);
+    }
 
     /**
      * 查询产品类目列表
