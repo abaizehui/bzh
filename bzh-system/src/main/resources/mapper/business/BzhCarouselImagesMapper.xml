@@ -27,6 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="status != null "> and status = #{status}</if>
             <if test="storeId != null "> and store_id = #{storeId}</if>
         </where>
+        order by sort_order asc
     </select>
 
     <select id="selectBzhCarouselImagesById" parameterType="Long" resultMap="BzhCarouselImagesResult">

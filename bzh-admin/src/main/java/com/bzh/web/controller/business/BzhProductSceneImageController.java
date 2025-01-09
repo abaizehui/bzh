@@ -24,7 +24,7 @@ import com.bzh.common.core.page.TableDataInfo;
 
 /**
  * 商品实景图Controller
- * 
+ *
  * @author bzh
  * @date 2025-01-04
  */
@@ -38,11 +38,12 @@ public class BzhProductSceneImageController extends BaseController
     /**
      * 查询商品实景图列表
      */
-    @PreAuthorize("@ss.hasPermi('business:scene:list')")
-    @GetMapping("/list")
-    public TableDataInfo list(BzhProductSceneImage bzhProductSceneImage)
+    @GetMapping("/list/{productId}")
+    public TableDataInfo list(@PathVariable("productId") Long productId)
     {
         startPage();
+        BzhProductSceneImage bzhProductSceneImage = new BzhProductSceneImage();
+        bzhProductSceneImage.setProductId(productId);
         List<BzhProductSceneImage> list = bzhProductSceneImageService.selectBzhProductSceneImageList(bzhProductSceneImage);
         return getDataTable(list);
     }
@@ -50,8 +51,6 @@ public class BzhProductSceneImageController extends BaseController
     /**
      * 导出商品实景图列表
      */
-    @PreAuthorize("@ss.hasPermi('business:scene:export')")
-    @Log(title = "商品实景图", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, BzhProductSceneImage bzhProductSceneImage)
     {
@@ -63,7 +62,6 @@ public class BzhProductSceneImageController extends BaseController
     /**
      * 获取商品实景图详细信息
      */
-    @PreAuthorize("@ss.hasPermi('business:scene:query')")
     @GetMapping(value = "/{id}")
     public AjaxResult getInfo(@PathVariable("id") Long id)
     {
@@ -73,8 +71,6 @@ public class BzhProductSceneImageController extends BaseController
     /**
      * 新增商品实景图
      */
-    @PreAuthorize("@ss.hasPermi('business:scene:add')")
-    @Log(title = "商品实景图", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody BzhProductSceneImage bzhProductSceneImage)
     {
@@ -84,8 +80,6 @@ public class BzhProductSceneImageController extends BaseController
     /**
      * 修改商品实景图
      */
-    @PreAuthorize("@ss.hasPermi('business:scene:edit')")
-    @Log(title = "商品实景图", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody BzhProductSceneImage bzhProductSceneImage)
     {
@@ -95,8 +89,6 @@ public class BzhProductSceneImageController extends BaseController
     /**
      * 删除商品实景图
      */
-    @PreAuthorize("@ss.hasPermi('business:scene:remove')")
-    @Log(title = "商品实景图", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public AjaxResult remove(@PathVariable Long[] ids)
     {

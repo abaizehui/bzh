@@ -27,6 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <where>
             <if test="productId != null "> and product_id = #{productId}</if>
         </where>
+        order by sort_order asc
     </select>
 
     <select id="selectBzhProductParamById" parameterType="Long" resultMap="BzhProductParamResult">

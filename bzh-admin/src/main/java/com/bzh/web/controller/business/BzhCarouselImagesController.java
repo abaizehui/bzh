@@ -23,7 +23,7 @@ import com.bzh.common.core.page.TableDataInfo;
 
 /**
  * 轮播图Controller
- * 
+ *
  * @author bzh
  * @date 2025-01-06
  */
@@ -37,11 +37,12 @@ public class BzhCarouselImagesController extends BaseController
     /**
      * 查询轮播图列表
      */
-    @PreAuthorize("@ss.hasPermi('business:carousel:list')")
-    @GetMapping("/list")
-    public TableDataInfo list(BzhCarouselImages bzhCarouselImages)
+    @GetMapping("/list/{storeId}")
+    public TableDataInfo list(@PathVariable("storeId") Long storeId)
     {
         startPage();
+        BzhCarouselImages bzhCarouselImages = new BzhCarouselImages();
+        bzhCarouselImages.setStoreId(storeId);
         List<BzhCarouselImages> list = bzhCarouselImagesService.selectBzhCarouselImagesList(bzhCarouselImages);
         return getDataTable(list);
     }
@@ -49,8 +50,6 @@ public class BzhCarouselImagesController extends BaseController
     /**
      * 导出轮播图列表
      */
-    @PreAuthorize("@ss.hasPermi('business:carousel:export')")
-    @Log(title = "轮播图", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, BzhCarouselImages bzhCarouselImages)
     {
@@ -62,7 +61,6 @@ public class BzhCarouselImagesController extends BaseController
     /**
      * 获取轮播图详细信息
      */
-    @PreAuthorize("@ss.hasPermi('business:carousel:query')")
     @GetMapping(value = "/{id}")
     public AjaxResult getInfo(@PathVariable("id") Long id)
     {
@@ -72,8 +70,6 @@ public class BzhCarouselImagesController extends BaseController
     /**
      * 新增轮播图
      */
-    @PreAuthorize("@ss.hasPermi('business:carousel:add')")
-    @Log(title = "轮播图", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody BzhCarouselImages bzhCarouselImages)
     {
@@ -83,8 +79,6 @@ public class BzhCarouselImagesController extends BaseController
     /**
      * 修改轮播图
      */
-    @PreAuthorize("@ss.hasPermi('business:carousel:edit')")
-    @Log(title = "轮播图", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody BzhCarouselImages bzhCarouselImages)
     {
@@ -94,8 +88,6 @@ public class BzhCarouselImagesController extends BaseController
     /**
      * 删除轮播图
      */
-    @PreAuthorize("@ss.hasPermi('business:carousel:remove')")
-    @Log(title = "轮播图", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public AjaxResult remove(@PathVariable Long[] ids)
     {

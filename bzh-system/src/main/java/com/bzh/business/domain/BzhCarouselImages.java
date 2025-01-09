@@ -13,8 +13,6 @@ import com.bzh.common.core.domain.BaseEntity;
  * @date 2025-01-06
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class BzhCarouselImages extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
