@@ -1,6 +1,8 @@
 package com.bzh.business.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import com.bzh.common.annotation.Excel;
@@ -13,6 +15,8 @@ import com.bzh.common.core.domain.BaseEntity;
  * @date 2025-01-04
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class BzhProductCategory extends BaseEntity
 {
     private static final long serialVersionUID = 1L;

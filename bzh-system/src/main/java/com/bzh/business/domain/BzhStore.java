@@ -1,8 +1,10 @@
 package com.bzh.business.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import com.bzh.common.annotation.Excel;
 import com.bzh.common.core.domain.BaseEntity;
+import lombok.NoArgsConstructor;
 
 /**
  * 门店对象 bzh_store
@@ -11,6 +13,8 @@ import com.bzh.common.core.domain.BaseEntity;
  * @date 2025-01-04
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class BzhStore extends BaseEntity
 {
 
