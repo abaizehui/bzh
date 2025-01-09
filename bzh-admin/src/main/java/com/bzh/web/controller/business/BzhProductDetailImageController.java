@@ -37,12 +37,10 @@ public class BzhProductDetailImageController extends BaseController
     /**
      * 查询商品详情图列表
      */
-    @GetMapping("/list/{productId}")
-    public TableDataInfo list(@PathVariable("productId") Long productId)
+    @GetMapping("/list")
+    public TableDataInfo list(BzhProductDetailImage bzhProductDetailImage)
     {
         startPage();
-        BzhProductDetailImage bzhProductDetailImage = new BzhProductDetailImage();
-        bzhProductDetailImage.setProductId(productId);
         List<BzhProductDetailImage> list = bzhProductDetailImageService.selectBzhProductDetailImageList(bzhProductDetailImage);
         return getDataTable(list);
     }

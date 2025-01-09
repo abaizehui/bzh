@@ -37,12 +37,10 @@ public class BzhCarouselImagesController extends BaseController
     /**
      * 查询轮播图列表
      */
-    @GetMapping("/list/{storeId}")
-    public TableDataInfo list(@PathVariable("storeId") Long storeId)
+    @GetMapping("/list")
+    public TableDataInfo list(BzhCarouselImages bzhCarouselImages)
     {
         startPage();
-        BzhCarouselImages bzhCarouselImages = new BzhCarouselImages();
-        bzhCarouselImages.setStoreId(storeId);
         List<BzhCarouselImages> list = bzhCarouselImagesService.selectBzhCarouselImagesList(bzhCarouselImages);
         return getDataTable(list);
     }

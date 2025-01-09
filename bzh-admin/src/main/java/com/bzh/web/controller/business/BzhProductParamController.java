@@ -37,12 +37,10 @@ public class BzhProductParamController extends BaseController
     /**
      * 查询商品参数列表
      */
-    @GetMapping("/list/{productId}")
-    public TableDataInfo list(@PathVariable("productId") Long productId)
+    @GetMapping("/list")
+    public TableDataInfo list(BzhProductParam bzhProductParam)
     {
         startPage();
-        BzhProductParam bzhProductParam = new BzhProductParam();
-        bzhProductParam.setProductId(productId);
         List<BzhProductParam> list = bzhProductParamService.selectBzhProductParamList(bzhProductParam);
         return getDataTable(list);
     }
