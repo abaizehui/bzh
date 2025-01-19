@@ -20,7 +20,7 @@ import java.util.List;
  * @date 2025-01-06
  */
 @RestController
-@RequestMapping("/wx/carousel")
+        @RequestMapping("/wx/carousel")
 public class BzhWxCarouselImagesController extends BaseController
 {
     @Autowired
@@ -29,8 +29,8 @@ public class BzhWxCarouselImagesController extends BaseController
     /**
      * 查询轮播图列表
      */
-    @GetMapping("/list/{storeId}")
-    public AjaxResult list(@PathVariable("storeId") Long storeId)
+    @GetMapping("/list")
+    public AjaxResult list(@RequestParam("storeId") Long storeId)
     {
         BzhCarouselImages bzhCarouselImages = new BzhCarouselImages();
         bzhCarouselImages.setStoreId(storeId);
