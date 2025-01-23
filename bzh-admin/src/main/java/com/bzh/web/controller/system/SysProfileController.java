@@ -1,5 +1,6 @@
 package com.bzh.web.controller.system;
 
+import com.bzh.common.core.domain.entity.SysUpdatePwd;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +26,7 @@ import com.bzh.system.service.ISysUserService;
 
 /**
  * 个人信息 业务处理
- * 
+ *
  * @author bzh
  */
 @RestController
@@ -87,11 +88,13 @@ public class SysProfileController extends BaseController
      */
     @Log(title = "个人信息", businessType = BusinessType.UPDATE)
     @PutMapping("/updatePwd")
-    public AjaxResult updatePwd(String oldPassword, String newPassword)
+    public AjaxResult updatePwd(@RequestBody SysUpdatePwd sysUpdatePwd)
     {
         LoginUser loginUser = getLoginUser();
         String userName = loginUser.getUsername();
         String password = loginUser.getPassword();
+        String newPassword = sysUpdatePwd.getNewPassword();
+        String oldPassword = sysUpdatePwd.getOldPassword();
         if (!SecurityUtils.matchesPassword(oldPassword, password))
         {
             return error("修改密码失败，旧密码错误");
