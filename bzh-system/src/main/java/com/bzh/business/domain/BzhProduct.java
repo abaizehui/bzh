@@ -49,6 +49,9 @@ public class BzhProduct extends BaseEntity
     /** 商品图片 */
     private String imageUrl;
 
+    @Excel(name = "首页是否推荐", readConverterExp = "0=推荐,1=不推荐")
+    private String recommend;
+
     /** 状态（0正常 1停用） */
     @Excel(name = "状态", readConverterExp = "0=正常,1=停用")
     private String status;

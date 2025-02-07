@@ -1,5 +1,6 @@
 package com.bzh.business.service.impl;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -7,6 +8,7 @@ import java.util.stream.Collectors;
 
 import com.bzh.business.domain.BzhStore;
 import com.bzh.business.mapper.BzhStoreMapper;
+import com.bzh.common.constant.Constants;
 import com.bzh.common.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -106,5 +108,13 @@ public class BzhProductCategoryServiceImpl implements IBzhProductCategoryService
     public int deleteBzhProductCategoryById(Long id)
     {
         return bzhProductCategoryMapper.deleteBzhProductCategoryById(id);
+    }
+
+    @Override
+    public List<BzhProductCategory> getCategoryListByStoreId(Long storeId) {
+        BzhProductCategory bzhProductCategory = new BzhProductCategory();
+        bzhProductCategory.setStoreId(storeId);
+        bzhProductCategory.setStatus(Constants.STATUS_YES);
+        return bzhProductCategoryMapper.selectBzhProductCategoryList(bzhProductCategory);
     }
 }

@@ -59,6 +59,19 @@ public class BzhCarouselImagesServiceImpl implements IBzhCarouselImagesService
     }
 
     /**
+     * 查询轮播图列表
+     *
+     * @param bzhCarouselImages 轮播图
+     * @return 轮播图
+     */
+    @Override
+    public List<BzhCarouselImages> selectList(BzhCarouselImages bzhCarouselImages)
+    {
+        return bzhCarouselImagesMapper.selectBzhCarouselImagesList(bzhCarouselImages);
+    }
+
+
+    /**
      * 新增轮播图
      *
      * @param bzhCarouselImages 轮播图

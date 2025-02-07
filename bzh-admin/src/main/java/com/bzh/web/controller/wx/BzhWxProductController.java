@@ -1,0 +1,55 @@
+package com.bzh.web.controller.wx;
+
+import com.bzh.business.domain.BzhProduct;
+import com.bzh.business.service.IBzhProductService;
+import com.bzh.business.service.IBzhStoreService;
+import com.bzh.common.constant.Constants;
+import com.bzh.common.core.controller.BaseController;
+import com.bzh.common.core.domain.AjaxResult;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+
+/**
+ * 小程序商品Controller
+ *
+ * @author bzh
+ * @date 2025-01-06
+ */
+@RestController
+@RequestMapping("/wx/product")
+public class BzhWxProductController extends BaseController
+{
+    @Autowired
+    private IBzhProductService bzhProductService;
+
+    /**
+     * 根据产品类目id查询商品列表
+     */
+    @GetMapping("/getProductListByCategoryId")
+    public AjaxResult getProductListByCategoryId(@RequestParam("categoryId") Long categoryId)
+    {
+        BzhProduct bzhProduct = new BzhProduct();
+        bzhProduct.setCategoryId(categoryId);
+        bzhProduct.setStatus(Constants.STATUS_YES);
+        return success(bzhProductService.selectList(bzhProduct));
+    }
+
+    /**
+     * 根据门店id查询推荐商品列表
+     */
+    @GetMapping("/getRecommendProductListByStoreId")
+    public AjaxResult getRecommendProductListByStoreId(@RequestParam("storeId") Long storeId)
+    {
+        BzhProduct bzhProduct = new BzhProduct();
+        bzhProduct.setStoreId(storeId);
+        bzhProduct.setRecommend(Constants.STATUS_YES);
+        bzhProduct.setStatus(Constants.STATUS_YES);
+        return success(bzhProductService.selectList(bzhProduct));
+    }
+
+
+}

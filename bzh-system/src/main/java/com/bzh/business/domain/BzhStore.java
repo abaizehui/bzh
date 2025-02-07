@@ -31,6 +31,8 @@ public class BzhStore extends BaseEntity
     /** 联系电话 */
     @Excel(name = "联系电话")
     private String tel;
+    @Excel(name = "小程序id")
+    private String appId;
     /** 状态（0正常 1停用） */
     @Excel(name = "状态", readConverterExp = "0=正常,1=停用")
     private String status;

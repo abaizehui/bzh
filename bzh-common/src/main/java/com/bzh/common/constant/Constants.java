@@ -5,7 +5,7 @@ import io.jsonwebtoken.Claims;
 
 /**
  * 通用常量信息
- * 
+ *
  * @author bzh
  */
 public class Constants
@@ -44,6 +44,10 @@ public class Constants
      * 通用成功标识
      */
     public static final String SUCCESS = "0";
+
+    public static final String STATUS_YES = "0";
+
+    public static final String STATUS_NO = "1";
 
     /**
      * 通用失败标识

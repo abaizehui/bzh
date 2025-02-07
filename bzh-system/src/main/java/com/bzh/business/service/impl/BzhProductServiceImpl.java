@@ -67,6 +67,19 @@ public class BzhProductServiceImpl implements IBzhProductService
     }
 
     /**
+     * 查询商品列表
+     *
+     * @param bzhProduct 商品
+     * @return 商品
+     */
+    @Override
+    public List<BzhProduct> selectList(BzhProduct bzhProduct)
+    {
+        return bzhProductMapper.selectBzhProductList(bzhProduct);
+    }
+
+
+    /**
      * 新增商品
      *
      * @param bzhProduct 商品

@@ -10,19 +10,19 @@ import com.bzh.business.service.IBzhStoreService;
 
 /**
  * 门店Service业务层处理
- * 
+ *
  * @author bzh
  * @date 2025-01-04
  */
 @Service
-public class BzhStoreServiceImpl implements IBzhStoreService 
+public class BzhStoreServiceImpl implements IBzhStoreService
 {
     @Autowired
     private BzhStoreMapper bzhStoreMapper;
 
     /**
      * 查询门店
-     * 
+     *
      * @param id 门店主键
      * @return 门店
      */
@@ -33,8 +33,20 @@ public class BzhStoreServiceImpl implements IBzhStoreService
     }
 
     /**
+     * 根据appid查询门店
+     *
+     * @param appId 门店主键
+     * @return 门店
+     */
+    @Override
+    public BzhStore getStoreByAppId(String appId)
+    {
+        return bzhStoreMapper.getStoreByAppId(appId);
+    }
+
+    /**
      * 查询门店列表
-     * 
+     *
      * @param bzhStore 门店
      * @return 门店
      */
@@ -46,7 +58,7 @@ public class BzhStoreServiceImpl implements IBzhStoreService
 
     /**
      * 新增门店
-     * 
+     *
      * @param bzhStore 门店
      * @return 结果
      */
@@ -59,7 +71,7 @@ public class BzhStoreServiceImpl implements IBzhStoreService
 
     /**
      * 修改门店
-     * 
+     *
      * @param bzhStore 门店
      * @return 结果
      */
@@ -72,7 +84,7 @@ public class BzhStoreServiceImpl implements IBzhStoreService
 
     /**
      * 批量删除门店
-     * 
+     *
      * @param ids 需要删除的门店主键
      * @return 结果
      */
@@ -84,7 +96,7 @@ public class BzhStoreServiceImpl implements IBzhStoreService
 
     /**
      * 删除门店信息
-     * 
+     *
      * @param id 门店主键
      * @return 结果
      */

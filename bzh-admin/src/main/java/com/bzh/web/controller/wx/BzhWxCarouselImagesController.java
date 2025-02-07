@@ -2,6 +2,7 @@ package com.bzh.web.controller.wx;
 
 import com.bzh.business.domain.BzhCarouselImages;
 import com.bzh.business.service.IBzhCarouselImagesService;
+import com.bzh.common.constant.Constants;
 import com.bzh.common.core.controller.BaseController;
 import com.bzh.common.core.domain.AjaxResult;
 import com.bzh.common.core.page.TableDataInfo;
@@ -20,7 +21,7 @@ import java.util.List;
  * @date 2025-01-06
  */
 @RestController
-        @RequestMapping("/wx/carousel")
+@RequestMapping("/wx/carousel")
 public class BzhWxCarouselImagesController extends BaseController
 {
     @Autowired
@@ -29,13 +30,13 @@ public class BzhWxCarouselImagesController extends BaseController
     /**
      * 查询轮播图列表
      */
-    @GetMapping("/list")
-    public AjaxResult list(@RequestParam("storeId") Long storeId)
+    @GetMapping("/getCarouselList")
+    public AjaxResult getCarouselList(@RequestParam("storeId") Long storeId)
     {
         BzhCarouselImages bzhCarouselImages = new BzhCarouselImages();
         bzhCarouselImages.setStoreId(storeId);
-        List<BzhCarouselImages> list = bzhCarouselImagesService.selectBzhCarouselImagesList(bzhCarouselImages);
-        return success(list);
+        bzhCarouselImages.setStatus(Constants.STATUS_YES);
+        return success(bzhCarouselImagesService.selectList(bzhCarouselImages));
     }
 
 }
