@@ -35,7 +35,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="status != null "> and status = #{status}</if>
             <if test="productName != null  and productName != ''"> and product_name like concat('%', #{productName}, '%')</if>
         </where>
-        order by sort_order asc
+        <choose>
+            <when test="sortColumn == 'newest'">
+                order by create_time desc
+            </when>
+            <when test="sortColumn == 'price' and priceSort == 'asc'">
+                order by product_price asc
+            </when>
+            <when test="sortColumn == 'price' and priceSort == 'desc'">
+                order by product_price desc
+            </when>
+            <otherwise>
+                order by sort_order asc
+            </otherwise>
+        </choose>
     </select>
 
     <select id="selectBzhProductById" parameterType="Long" resultMap="BzhProductResult">

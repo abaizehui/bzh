@@ -60,4 +60,8 @@ public class BzhProduct extends BaseEntity
     @Excel(name = "排序顺序")
     private Long sortOrder;
 
+    private String sortColumn;
+
+    private String priceSort;
+
 }

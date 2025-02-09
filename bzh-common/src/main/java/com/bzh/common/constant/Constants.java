@@ -49,6 +49,16 @@ public class Constants
 
     public static final String STATUS_NO = "1";
 
+    public static final String DEFAULT = "default";
+
+    public static final String NEWEST = "newest";
+
+    public static final String PRICE = "price";
+
+    public static final String ASC = "asc";
+
+    public static final String DESC = "desc";
+
     /**
      * 通用失败标识
      */

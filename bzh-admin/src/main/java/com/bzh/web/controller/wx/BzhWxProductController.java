@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Objects;
+
 
 /**
  * 小程序商品Controller
@@ -30,9 +32,13 @@ public class BzhWxProductController extends BaseController
      * 根据产品类目id查询商品列表
      */
     @GetMapping("/getProductListByCategoryId")
-    public AjaxResult getProductListByCategoryId(@RequestParam("categoryId") Long categoryId)
+    public AjaxResult getProductListByCategoryId(@RequestParam(value = "categoryId") Long categoryId,
+                                                 @RequestParam(value = "sortKey",required = false) String sortKey,
+                                                 @RequestParam(value = "priceSort",required = false) String priceSort)
     {
         BzhProduct bzhProduct = new BzhProduct();
+        bzhProduct.setSortColumn(sortKey);
+        bzhProduct.setPriceSort(priceSort);
         bzhProduct.setCategoryId(categoryId);
         bzhProduct.setStatus(Constants.STATUS_YES);
         return success(bzhProductService.selectList(bzhProduct));
