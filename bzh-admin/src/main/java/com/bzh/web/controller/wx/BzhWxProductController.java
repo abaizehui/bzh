@@ -72,4 +72,13 @@ public class BzhWxProductController extends BaseController
         return success(bzhProductService.selectList(bzhProduct));
     }
 
+    /**
+     * 根据门店id查询推荐商品列表
+     */
+    @GetMapping("/getProductDetailByProductId")
+    public AjaxResult getProductDetailByProductId(@RequestParam("productId") Long productId)
+    {
+        return success(bzhProductService.getProductDetailByProductId(productId));
+    }
+
 }

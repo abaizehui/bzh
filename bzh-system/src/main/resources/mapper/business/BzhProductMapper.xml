@@ -53,7 +53,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <select id="selectBzhProductById" parameterType="Long" resultMap="BzhProductResult">
         <include refid="selectBzhProductVo"/>
-        where id = #{id}
+        where id = #{id} and status ='0'
     </select>
 
     <insert id="insertBzhProduct" parameterType="BzhProduct" useGeneratedKeys="true" keyProperty="id">

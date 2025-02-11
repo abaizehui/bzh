@@ -25,6 +25,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectBzhProductSceneImageVo"/>
         <where>
             <if test="productId != null "> and product_id = #{productId}</if>
+            <if test="status != null "> and status = #{status}</if>
+
         </where>
         order by sort_order asc
     </select>

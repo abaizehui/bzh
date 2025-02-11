@@ -2,18 +2,17 @@ package com.bzh.business.service.impl;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import com.bzh.business.domain.BzhProductCategory;
-import com.bzh.business.domain.BzhStore;
-import com.bzh.business.mapper.BzhProductCategoryMapper;
-import com.bzh.business.mapper.BzhStoreMapper;
+import com.bzh.business.domain.*;
+import com.bzh.business.mapper.*;
+import com.bzh.common.constant.Constants;
 import com.bzh.common.utils.DateUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.bzh.business.mapper.BzhProductMapper;
-import com.bzh.business.domain.BzhProduct;
 import com.bzh.business.service.IBzhProductService;
 
 /**
@@ -31,6 +30,15 @@ public class BzhProductServiceImpl implements IBzhProductService
     private BzhStoreMapper bzhStoreMapper;
     @Autowired
     private BzhProductCategoryMapper bzhProductCategoryMapper;
+
+    @Autowired
+    private BzhProductDetailImageMapper bzhProductDetailImageMapper;
+
+    @Autowired
+    private BzhProductParamMapper bzhProductParamMapper;
+
+    @Autowired
+    private BzhProductSceneImageMapper bzhProductSceneImageMapper;
 
     /**
      * 查询商品
@@ -127,5 +135,29 @@ public class BzhProductServiceImpl implements IBzhProductService
     public int deleteBzhProductById(Long id)
     {
         return bzhProductMapper.deleteBzhProductById(id);
+    }
+
+    @Override
+    public BzhProduct getProductDetailByProductId(Long productId) {
+        BzhProduct bzhProduct = bzhProductMapper.selectBzhProductById(productId);
+        if (Objects.isNull(bzhProduct)) {
+            return null;
+        }
+        BzhProductParam bzhProductParam = new BzhProductParam();
+        bzhProductParam.setProductId(productId);
+        bzhProductParam.setStatus(Constants.STATUS_YES);
+        List<BzhProductParam> bzhProductParams = bzhProductParamMapper.selectBzhProductParamList(bzhProductParam);
+        if (CollectionUtils.isNotEmpty(bzhProductParams)) {
+            bzhProduct.setProductParamList(bzhProductParams);
+        }
+
+        BzhProductDetailImage bzhProductDetailImage = new BzhProductDetailImage();
+        bzhProductDetailImage.setProductId(productId);
+        bzhProductDetailImage.setStatus(Constants.STATUS_YES);
+        List<BzhProductDetailImage> bzhProductDetailImages = bzhProductDetailImageMapper.selectBzhProductDetailImageList(bzhProductDetailImage);
+        if (CollectionUtils.isNotEmpty(bzhProductDetailImages)) {
+            bzhProduct.setProductDetailImages(bzhProductDetailImages);
+        }
+        return bzhProduct;
     }
 }

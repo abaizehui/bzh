@@ -1,6 +1,7 @@
 package com.bzh.business.domain;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -63,5 +64,11 @@ public class BzhProduct extends BaseEntity
     private String sortColumn;
 
     private String priceSort;
+
+    private List<BzhProductParam>  productParamList;
+
+    private List<BzhProductDetailImage>  productDetailImages;
+
+
 
 }

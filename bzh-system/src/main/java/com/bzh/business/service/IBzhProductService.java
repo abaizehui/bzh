@@ -66,4 +66,6 @@ public interface IBzhProductService
      * @return 结果
      */
     public int deleteBzhProductById(Long id);
+
+    public BzhProduct getProductDetailByProductId(Long productId);
 }
