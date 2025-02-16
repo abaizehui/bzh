@@ -128,3 +128,9 @@ xss:
   excludes: /system/notice
   # 匹配链接
   urlPatterns: /system/*,/monitor/*,/tool/*
+wx:
+  appId: wxaf9f7546cdea4c1c
+  appSecret: aa28a1f5b384124163dd5d0266140a44
+  api:
+    tokenUrl: https://api.weixin.qq.com/cgi-bin/stable_token
+    phoneNumberUrl: https://api.weixin.qq.com/wxa/business/getuserphonenumber
