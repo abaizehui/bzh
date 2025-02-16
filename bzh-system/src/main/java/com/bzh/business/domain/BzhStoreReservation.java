@@ -1,9 +1,13 @@
 package com.bzh.business.domain;
 
+import com.bzh.common.annotation.Excel;
 import com.bzh.common.core.domain.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Date;
 
 /**
  * 门店预约参数对象 bzh_store_reservation
@@ -23,9 +27,20 @@ public class BzhStoreReservation extends BaseEntity
     private Long productId;
 
     /** 姓名 */
+    @Excel(name = "产品名称")
+    private String productName;
+
+    /** 姓名 */
+    @Excel(name = "姓名")
     private String name;
 
     /** 手机号 */
+    @Excel(name = "手机号")
     private String phone;
+
+    /** 创建时间 */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @Excel(name = "预约时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss", type = Excel.Type.EXPORT)
+    private Date createTime;
 
 }
