@@ -28,6 +28,8 @@ public class BzhStore extends BaseEntity
     /** 详细地址 */
     @Excel(name = "详细地址")
     private String address;
+    /** 图片URL */
+    private String imageUrl;
     /** 联系电话 */
     @Excel(name = "联系电话")
     private String tel;
