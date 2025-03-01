@@ -67,6 +67,8 @@ public class BzhProduct extends BaseEntity
 
     private List<BzhProductParam>  productParamList;
 
+    private List<BzhProductConfig>  productConfigList;
+
     private List<BzhProductDetailImage>  productDetailImages;
 
 

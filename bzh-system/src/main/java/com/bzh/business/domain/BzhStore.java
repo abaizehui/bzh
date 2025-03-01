@@ -6,6 +6,8 @@ import com.bzh.common.annotation.Excel;
 import com.bzh.common.core.domain.BaseEntity;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 /**
  * 门店对象 bzh_store
  *
@@ -24,10 +26,20 @@ public class BzhStore extends BaseEntity
     /** 门店名称 */
     @Excel(name = "门店名称")
     private String storeName;
-
+    /** 地址名称 */
+    @Excel(name = "地址名称")
+    private String addressName;
     /** 详细地址 */
     @Excel(name = "详细地址")
     private String address;
+    /** 纬度 */
+    @Excel(name = "纬度")
+    private BigDecimal latitude;
+    /** 经度 */
+    @Excel(name = "经度")
+    private BigDecimal longitude;
+    /** 客服名片 */
+    private String carUrl;
     /** 图片URL */
     private String imageUrl;
     /** 联系电话 */

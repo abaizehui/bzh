@@ -38,6 +38,9 @@ public class BzhProductServiceImpl implements IBzhProductService
     private BzhProductParamMapper bzhProductParamMapper;
 
     @Autowired
+    private BzhProductConfigMapper bzhProductConfigMapper;
+
+    @Autowired
     private BzhProductSceneImageMapper bzhProductSceneImageMapper;
 
     /**
@@ -149,6 +152,14 @@ public class BzhProductServiceImpl implements IBzhProductService
         List<BzhProductParam> bzhProductParams = bzhProductParamMapper.selectBzhProductParamList(bzhProductParam);
         if (CollectionUtils.isNotEmpty(bzhProductParams)) {
             bzhProduct.setProductParamList(bzhProductParams);
+        }
+
+        BzhProductConfig bzhProductConfig = new BzhProductConfig();
+        bzhProductConfig.setProductId(productId);
+        bzhProductConfig.setStatus(Constants.STATUS_YES);
+        List<BzhProductConfig> bzhProductConfigs = bzhProductConfigMapper.selectBzhProductConfigList(bzhProductConfig);
+        if (CollectionUtils.isNotEmpty(bzhProductConfigs)) {
+            bzhProduct.setProductConfigList(bzhProductConfigs);
         }
 
         BzhProductDetailImage bzhProductDetailImage = new BzhProductDetailImage();

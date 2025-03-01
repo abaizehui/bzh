@@ -7,7 +7,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <resultMap type="BzhStore" id="BzhStoreResult">
         <result property="id"    column="id"    />
         <result property="storeName"    column="store_name"    />
+        <result property="addressName"    column="address_name"    />
         <result property="address"    column="address"    />
+        <result property="latitude"    column="latitude"   />
+        <result property="longitude"    column="longitude"  />
+        <result property="carUrl"    column="car_url"    />
         <result property="imageUrl"    column="image_url"    />
         <result property="tel"    column="tel"    />
         <result property="businessHours"    column="business_hours"    />
@@ -21,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectBzhStoreVo">
-        select id, store_name, address, image_url, tel, business_hours, app_id, status, create_by, create_time, update_by, update_time, remark from bzh_store
+        select id, store_name, address_name,address,latitude,longitude,car_url, image_url, tel, business_hours, app_id, status, create_by, create_time, update_by, update_time, remark from bzh_store
     </sql>
 
     <select id="selectBzhStoreList" parameterType="BzhStore" resultMap="BzhStoreResult">
@@ -48,7 +52,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         insert into bzh_store
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="storeName != null and storeName != ''">store_name,</if>
+            <if test="addressName != null">address_name,</if>
             <if test="address != null">address,</if>
+            <if test="latitude != null">latitude,</if>
+            <if test="longitude != null">longitude,</if>
+            <if test="carUrl != null and carUrl != ''">car_url,</if>
             <if test="imageUrl != null and imageUrl != ''">image_url,</if>
             <if test="tel != null and tel != ''">tel,</if>
             <if test="businessHours != null and businessHours != ''">business_hours,</if>
@@ -62,7 +70,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="storeName != null and storeName != ''">#{storeName},</if>
+            <if test="addressName != null">#{addressName},</if>
             <if test="address != null">#{address},</if>
+            <if test="latitude != null">#{latitude},</if>
+            <if test="longitude != null">#{longitude},</if>
+            <if test="carUrl != null and carUrl != ''">#{carUrl},</if>
             <if test="imageUrl != null and imageUrl != ''">#{imageUrl},</if>
             <if test="tel != null and tel != ''">#{tel},</if>
             <if test="businessHours != null and businessHours != ''">#{businessHours},</if>
@@ -80,7 +92,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         update bzh_store
         <trim prefix="SET" suffixOverrides=",">
             <if test="storeName != null and storeName != ''">store_name = #{storeName},</if>
+            <if test="addressName != null">address_name = #{addressName},</if>
             <if test="address != null">address = #{address},</if>
+            <if test="latitude != null">latitude = #{latitude},</if>
+            <if test="longitude != null">longitude = #{longitude},</if>
+            <if test="carUrl != null and carUrl != ''">car_url = #{carUrl},</if>
             <if test="imageUrl != null and imageUrl != ''">image_url = #{imageUrl},</if>
             <if test="tel != null and tel != ''">tel = #{tel},</if>
             <if test="businessHours != null and businessHours != ''">business_hours = #{businessHours},</if>

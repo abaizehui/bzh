@@ -73,7 +73,7 @@ public class BzhWxProductController extends BaseController
     }
 
     /**
-     * 根据门店id查询推荐商品列表
+     * 根据商品id查询商品
      */
     @GetMapping("/getProductDetailByProductId")
     public AjaxResult getProductDetailByProductId(@RequestParam("productId") Long productId)
