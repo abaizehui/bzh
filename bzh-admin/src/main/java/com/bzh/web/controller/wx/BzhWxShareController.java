@@ -43,7 +43,7 @@ public class BzhWxShareController extends BaseController
      * 提交预约
      */
     @GetMapping("/submit")
-    public AjaxResult submit(@RequestParam("storeId") String storeId,
+    public AjaxResult submit(@RequestParam("storeId") Long storeId,
                              @RequestParam("name") String name,
                              @RequestParam("phone") String phone,
                              @RequestParam(value = "productId",required = false) Long productId)
@@ -51,6 +51,7 @@ public class BzhWxShareController extends BaseController
         BzhStoreReservation bzhStoreReservation = new BzhStoreReservation();
         bzhStoreReservation.setName(name);
         bzhStoreReservation.setPhone(phone);
+        bzhStoreReservation.setStoreId(storeId);
         if (Objects.nonNull(productId)) {
             bzhStoreReservation.setProductId(productId);
         }
