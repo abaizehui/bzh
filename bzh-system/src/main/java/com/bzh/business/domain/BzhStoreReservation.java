@@ -23,6 +23,9 @@ public class BzhStoreReservation extends BaseEntity
     /** 主键 */
     private Long id;
 
+    /** 门店ID */
+    private Long storeId;
+
     /** 商品ID */
     private Long productId;
 

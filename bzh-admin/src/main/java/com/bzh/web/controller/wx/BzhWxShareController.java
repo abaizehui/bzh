@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Objects;
+
 
 /**
  * 小程序分享Controller
@@ -41,14 +43,17 @@ public class BzhWxShareController extends BaseController
      * 提交预约
      */
     @GetMapping("/submit")
-    public AjaxResult submit(@RequestParam("name") String name,
+    public AjaxResult submit(@RequestParam("storeId") String storeId,
+                             @RequestParam("name") String name,
                              @RequestParam("phone") String phone,
                              @RequestParam(value = "productId",required = false) Long productId)
     {
         BzhStoreReservation bzhStoreReservation = new BzhStoreReservation();
         bzhStoreReservation.setName(name);
         bzhStoreReservation.setPhone(phone);
-        bzhStoreReservation.setProductId(productId);
+        if (Objects.nonNull(productId)) {
+            bzhStoreReservation.setProductId(productId);
+        }
         return success(bzhStoreReservationService.insertBzhStoreReservation(bzhStoreReservation));
     }
 

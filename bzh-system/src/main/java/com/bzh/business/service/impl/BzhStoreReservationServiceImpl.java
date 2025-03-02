@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import com.bzh.business.domain.BzhProduct;
 import com.bzh.business.mapper.BzhProductMapper;
 import com.bzh.common.utils.DateUtils;
+import com.bzh.common.utils.http.HttpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.bzh.business.mapper.BzhStoreReservationMapper;
@@ -74,7 +75,31 @@ public class BzhStoreReservationServiceImpl implements IBzhStoreReservationServi
     public int insertBzhStoreReservation(BzhStoreReservation bzhStoreReservation)
     {
         bzhStoreReservation.setCreateTime(DateUtils.getNowDate());
-        return bzhStoreReservationMapper.insertBzhStoreReservation(bzhStoreReservation);
+        int num = bzhStoreReservationMapper.insertBzhStoreReservation(bzhStoreReservation);
+
+        String shareType = "预约到店";
+        String productContent = "";
+        if (Objects.nonNull(bzhStoreReservation.getProductId())) {
+            BzhProduct bzhProduct = bzhProductMapper.selectBzhProductById(bzhStoreReservation.getProductId());
+            shareType = "产品预约";
+            productContent = "产品名称: <font color=\\\"comment\\\">"+bzhProduct.getProductName()+"</font>\\n> ";
+        }
+        String content = "新增预约用户:\\n> " +
+                "姓名: <font color=\\\"comment\\\">"+bzhStoreReservation.getName()+"</font>\\n> " +
+                "手机号: <font color=\\\"comment\\\">"+bzhStoreReservation.getPhone()+"</font>\\n> " +
+                 productContent +
+                "预约类型: <font color=\\\"comment\\\">"+shareType+"</font>";
+        sendMarkdownMessage(content);
+        return num;
+    }
+
+    private static final String WEBHOOK_URL = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=ff178b1c-47d5-41f4-becb-ac4585f13777";
+
+    public static void sendMarkdownMessage(String content) {
+        // 构建消息体
+        String json = "{\"msgtype\": \"markdown\", \"markdown\": {\"content\": \"" + content + "\"}}";
+        String s = HttpUtils.sendPost(WEBHOOK_URL, json);
+
     }
 
     /**
