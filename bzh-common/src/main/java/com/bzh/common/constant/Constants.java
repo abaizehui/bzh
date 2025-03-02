@@ -110,6 +110,21 @@ public class Constants
     public static final Integer CAPTCHA_EXPIRATION = 2;
 
     /**
+     * 缓存有效期（分钟）
+     */
+    public static final Integer EXPIRATION = 2;
+
+    /**
+     * 井号
+     */
+    public static final String WELL = "#";
+
+    /**
+     * 分享key
+     */
+    public static final String SUBMIT_SHARE_KEY = "submitShare:";
+
+    /**
      * 令牌
      */
     public static final String TOKEN = "token";
