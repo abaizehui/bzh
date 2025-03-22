@@ -42,7 +42,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where id = #{id}
     </select>
 
-    <select id="selectBzhWechatUserByOpenId" resultType="com.bzh.business.domain.BzhWechatUser">
+    <select id="selectBzhWechatUserByOpenId"  parameterType="string" resultMap="BzhWechatUserResult">
         <include refid="selectBzhWechatUserVo"/>
         where open_id = #{openId}
     </select>

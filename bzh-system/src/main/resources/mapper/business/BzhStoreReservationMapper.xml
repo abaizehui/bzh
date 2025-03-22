@@ -10,6 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="productId"    column="product_id"    />
         <result property="name"    column="name"    />
         <result property="phone"    column="phone"    />
+        <result property="inviterOpenId"    column="inviter_open_id"    />
         <result property="createBy"    column="create_by"    />
         <result property="createTime"    column="create_time"    />
         <result property="updateBy"    column="update_by"    />
@@ -18,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectBzhStoreReservationVo">
-        select id,store_id,product_id, name, phone, create_by, create_time, update_by, update_time, remark from bzh_store_reservation
+        select id,store_id,product_id, name, phone,inviter_open_id, create_by, create_time, update_by, update_time, remark from bzh_store_reservation
     </sql>
 
     <select id="selectBzhStoreReservationList" parameterType="BzhStoreReservation" resultMap="BzhStoreReservationResult">
@@ -42,6 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="productId != null">product_id,</if>
             <if test="name != null">name,</if>
             <if test="phone != null">phone,</if>
+            <if test="inviterOpenId != null">inviter_open_id,</if>
             <if test="createBy != null">create_by,</if>
             <if test="createTime != null">create_time,</if>
             <if test="updateBy != null">update_by,</if>
@@ -53,6 +55,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="productId != null">#{productId},</if>
             <if test="name != null">#{name},</if>
             <if test="phone != null">#{phone},</if>
+            <if test="inviterOpenId != null">#{inviterOpenId},</if>
             <if test="createBy != null">#{createBy},</if>
             <if test="createTime != null">#{createTime},</if>
             <if test="updateBy != null">#{updateBy},</if>
@@ -66,6 +69,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <trim prefix="SET" suffixOverrides=",">
             <if test="name != null">name = #{name},</if>
             <if test="phone != null">phone = #{phone},</if>
+            <if test="inviterOpenId != null">inviter_open_id = #{inviterOpenId},</if>
             <if test="createBy != null">create_by = #{createBy},</if>
             <if test="createTime != null">create_time = #{createTime},</if>
             <if test="updateBy != null">update_by = #{updateBy},</if>

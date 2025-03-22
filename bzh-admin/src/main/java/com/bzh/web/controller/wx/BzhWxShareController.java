@@ -41,7 +41,8 @@ public class BzhWxShareController extends BaseController
     public AjaxResult submit(@RequestParam("storeId") Long storeId,
                              @RequestParam("name") String name,
                              @RequestParam("phone") String phone,
-                             @RequestParam(value = "productId",required = false) Long productId)
+                             @RequestParam(value = "productId",required = false) Long productId,
+                             @RequestParam(value = "inviterOpenId",required = false) String inviterOpenId)
     {
         Object result = redisCache.getCacheObject(getSubmitShareKey(phone,storeId));
         if (Objects.nonNull(result)) {
@@ -51,6 +52,7 @@ public class BzhWxShareController extends BaseController
         bzhStoreReservation.setName(name);
         bzhStoreReservation.setPhone(phone);
         bzhStoreReservation.setStoreId(storeId);
+        bzhStoreReservation.setInviterOpenId(inviterOpenId);
         if (Objects.nonNull(productId)) {
             bzhStoreReservation.setProductId(productId);
         }
