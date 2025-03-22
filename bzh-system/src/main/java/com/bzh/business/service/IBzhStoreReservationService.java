@@ -5,15 +5,15 @@ import com.bzh.business.domain.BzhStoreReservation;
 
 /**
  * 门店预约Service接口
- * 
+ *
  * @author bzh
  * @date 2025-02-16
  */
-public interface IBzhStoreReservationService 
+public interface IBzhStoreReservationService
 {
     /**
      * 查询门店预约
-     * 
+     *
      * @param id 门店预约主键
      * @return 门店预约
      */
@@ -21,7 +21,7 @@ public interface IBzhStoreReservationService
 
     /**
      * 查询门店预约列表
-     * 
+     *
      * @param bzhStoreReservation 门店预约
      * @return 门店预约集合
      */
@@ -29,7 +29,7 @@ public interface IBzhStoreReservationService
 
     /**
      * 新增门店预约
-     * 
+     *
      * @param bzhStoreReservation 门店预约
      * @return 结果
      */
@@ -37,7 +37,7 @@ public interface IBzhStoreReservationService
 
     /**
      * 修改门店预约
-     * 
+     *
      * @param bzhStoreReservation 门店预约
      * @return 结果
      */
@@ -45,7 +45,7 @@ public interface IBzhStoreReservationService
 
     /**
      * 批量删除门店预约
-     * 
+     *
      * @param ids 需要删除的门店预约主键集合
      * @return 结果
      */
@@ -53,9 +53,10 @@ public interface IBzhStoreReservationService
 
     /**
      * 删除门店预约信息
-     * 
+     *
      * @param id 门店预约主键
      * @return 结果
      */
     public int deleteBzhStoreReservationById(Long id);
+
 }

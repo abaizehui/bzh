@@ -1,7 +1,9 @@
 package com.bzh.web.controller.wx;
 
 import com.bzh.business.domain.BzhProduct;
+import com.bzh.business.domain.BzhStoreReservation;
 import com.bzh.business.service.IBzhProductService;
+import com.bzh.business.service.IBzhStoreReservationService;
 import com.bzh.business.service.IBzhStoreService;
 import com.bzh.common.constant.Constants;
 import com.bzh.common.core.controller.BaseController;
@@ -79,6 +81,15 @@ public class BzhWxProductController extends BaseController
     public AjaxResult getProductDetailByProductId(@RequestParam("productId") Long productId)
     {
         return success(bzhProductService.getProductDetailByProductId(productId));
+    }
+
+    /**
+     * 根据手机号获取预约商品
+     */
+    @GetMapping("/getProductListByPhoneNumber")
+    public AjaxResult getProductListByPhoneNumber(@RequestParam(value = "phoneNumber") String phoneNumber)
+    {
+        return success(bzhProductService.getProductListByPhoneNumber(phoneNumber));
     }
 
 }

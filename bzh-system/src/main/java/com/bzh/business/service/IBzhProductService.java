@@ -68,4 +68,6 @@ public interface IBzhProductService
     public int deleteBzhProductById(Long id);
 
     public BzhProduct getProductDetailByProductId(Long productId);
+
+    public List<BzhProduct> getProductListByPhoneNumber(String phoneNumber);
 }

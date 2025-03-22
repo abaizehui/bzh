@@ -1,7 +1,6 @@
 package com.bzh.web.controller.wx;
 
 import com.bzh.business.domain.BzhStoreReservation;
-import com.bzh.business.service.IBzhShareService;
 import com.bzh.business.service.IBzhStoreReservationService;
 import com.bzh.common.constant.Constants;
 import com.bzh.common.core.controller.BaseController;
@@ -27,8 +26,6 @@ import java.util.concurrent.TimeUnit;
 @RequestMapping("/wx/share")
 public class BzhWxShareController extends BaseController
 {
-    @Autowired
-    private IBzhShareService bzhShareService;
 
     @Autowired
     private IBzhStoreReservationService bzhStoreReservationService;
@@ -36,14 +33,6 @@ public class BzhWxShareController extends BaseController
     @Autowired
     private RedisCache redisCache;
 
-    /**
-     * 获取手机号
-     */
-    @GetMapping("/getPhoneNumber")
-    public AjaxResult getPhoneNumber(@RequestParam("code") String code)
-    {
-        return success(bzhShareService.getPhoneNumber(code));
-    }
 
     /**
      * 提交预约

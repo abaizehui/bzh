@@ -1,5 +1,6 @@
 package com.bzh.business.service.impl;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -42,6 +43,9 @@ public class BzhProductServiceImpl implements IBzhProductService
 
     @Autowired
     private BzhProductSceneImageMapper bzhProductSceneImageMapper;
+
+    @Autowired
+    private BzhStoreReservationMapper bzhStoreReservationMapper;
 
     /**
      * 查询商品
@@ -170,5 +174,20 @@ public class BzhProductServiceImpl implements IBzhProductService
             bzhProduct.setProductDetailImages(bzhProductDetailImages);
         }
         return bzhProduct;
+    }
+
+    @Override
+    public List<BzhProduct> getProductListByPhoneNumber(String phoneNumber) {
+        BzhStoreReservation bzhStoreReservation = new BzhStoreReservation();
+        bzhStoreReservation.setPhone(phoneNumber);
+        List<BzhStoreReservation> bzhStoreReservations = bzhStoreReservationMapper.selectBzhStoreReservationList(bzhStoreReservation);
+        List<Long> ids = bzhStoreReservations.stream().map(BzhStoreReservation::getProductId).distinct().collect(Collectors.toList());
+        if (CollectionUtils.isEmpty(ids)) {
+            return Collections.emptyList();
+        }
+        BzhProduct bzhProduct = new BzhProduct();
+        bzhProduct.setIds(ids);
+        bzhProduct.setStatus(Constants.STATUS_YES);
+        return bzhProductMapper.selectBzhProductList(bzhProduct);
     }
 }

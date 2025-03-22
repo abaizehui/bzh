@@ -43,6 +43,11 @@ public class BzhProduct extends BaseEntity
     @Excel(name = "商品名称")
     private String productName;
 
+
+    @Excel(name = "商品描述")
+    private String productDescribe;
+
+
     /** 商品价格 */
     @Excel(name = "商品价格")
     private BigDecimal productPrice;
@@ -71,6 +76,6 @@ public class BzhProduct extends BaseEntity
 
     private List<BzhProductDetailImage>  productDetailImages;
 
-
+    private List<Long> ids;
 
 }

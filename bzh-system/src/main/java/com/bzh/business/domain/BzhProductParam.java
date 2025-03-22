@@ -8,6 +8,8 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import com.bzh.common.annotation.Excel;
 import com.bzh.common.core.domain.BaseEntity;
 
+import java.util.List;
+
 /**
  * 商品参数对象 bzh_product_param
  *

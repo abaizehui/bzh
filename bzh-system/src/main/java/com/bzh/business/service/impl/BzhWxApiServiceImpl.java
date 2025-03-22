@@ -2,8 +2,12 @@ package com.bzh.business.service.impl;
 
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
-import com.bzh.business.service.IBzhShareService;
+import com.bzh.business.domain.BzhWechatUser;
+import com.bzh.business.service.IBzhWechatUserService;
+import com.bzh.business.service.IBzhWxApiService;
+import com.bzh.common.constant.Constants;
 import com.bzh.common.utils.http.HttpUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +21,7 @@ import java.util.Objects;
  * @date 2025-01-04
  */
 @Service
-public class BzhShareServiceImpl implements IBzhShareService
+public class BzhWxApiServiceImpl implements IBzhWxApiService
 {
 
     @Value("${wx.appId}")
@@ -31,6 +35,12 @@ public class BzhShareServiceImpl implements IBzhShareService
 
     @Value("${wx.api.phoneNumberUrl}")
     private String phoneNumberUrl;
+
+    @Value("${wx.api.loginUrl}")
+    private String loginUrl;
+
+    @Autowired
+    private IBzhWechatUserService bzhWechatUserService;
 
     @Override
     public String getPhoneNumber(String code) {
@@ -48,6 +58,28 @@ public class BzhShareServiceImpl implements IBzhShareService
         }
         JSONObject phoneInfoObj = JSON.parseObject(phoneInfo);
         return phoneInfoObj.getString("phoneNumber");
+    }
+
+    @Override
+    public BzhWechatUser login(String code, String phoneNumber) {
+        String param = "appid="+appId+"&secret="+appSecret+"&js_code="+code+"&grant_type=authorization_code" ;
+        String result = HttpUtils.sendGet(loginUrl, param, Constants.UTF8);
+        JSONObject obj = JSON.parseObject(result);
+        String openId = obj.getString("openid");
+        if (Objects.isNull(openId)) {
+            throw new RuntimeException("openid获取失败");
+        }
+        String unionId = obj.getString("unionid");
+        BzhWechatUser bzhWechatUser = bzhWechatUserService.selectBzhWechatUserByOpenId(openId);
+        if (Objects.nonNull(bzhWechatUser)) {
+            return bzhWechatUser;
+        }
+        BzhWechatUser newBzhWechatUser = new BzhWechatUser();
+        newBzhWechatUser.setOpenId(openId);
+        newBzhWechatUser.setUnionId(unionId);
+        newBzhWechatUser.setPhoneNumber(phoneNumber);
+        bzhWechatUserService.insertBzhWechatUser(newBzhWechatUser);
+        return newBzhWechatUser;
     }
 
     private String getAccessToken() {

@@ -70,6 +70,8 @@ spring:
   redis:
     # 地址
     host: 47.115.200.2
+    #host: 127.0.0.1
+
     # 端口，默认为6379
     port: 6379
     # 数据库索引
@@ -134,3 +136,5 @@ wx:
   api:
     tokenUrl: https://api.weixin.qq.com/cgi-bin/stable_token
     phoneNumberUrl: https://api.weixin.qq.com/wxa/business/getuserphonenumber
+    loginUrl: https://api.weixin.qq.com/sns/jscode2session
+
