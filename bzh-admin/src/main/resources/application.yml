@@ -137,4 +137,7 @@ wx:
     tokenUrl: https://api.weixin.qq.com/cgi-bin/stable_token
     phoneNumberUrl: https://api.weixin.qq.com/wxa/business/getuserphonenumber
     loginUrl: https://api.weixin.qq.com/sns/jscode2session
+    qrCodeUrl: https://api.weixin.qq.com/wxa/getwxacodeunlimit
+
+
 

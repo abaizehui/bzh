@@ -126,5 +126,14 @@ public class HttpUtils
         return response.getBody();
     }
 
+    public static  byte[] sendPostByte(String url, String json) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> entity = new HttpEntity<>(json, headers);
+        ResponseEntity<byte[]> response = restTemplate.postForEntity(url, entity,  byte[].class);
+        return response.getBody();
+    }
+
+
 
 }

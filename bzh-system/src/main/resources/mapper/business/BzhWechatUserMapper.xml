@@ -14,8 +14,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="country"    column="country"    />
         <result property="province"    column="province"    />
         <result property="city"    column="city"    />
-        <result property="language"    column="language"    />
         <result property="phoneNumber"    column="phone_number"    />
+        <result property="qrCodeUrl"    column="qr_code_url"    />
         <result property="createBy"    column="create_by"    />
         <result property="createTime"    column="create_time"    />
         <result property="updateBy"    column="update_by"    />
@@ -24,7 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectBzhWechatUserVo">
-        select id, open_id, union_id, nick_name, avatar_url, gender, country, province, city, language, phone_number, create_by, create_time, update_by, update_time, remark from bzh_wechat_user
+        select id, open_id, union_id, nick_name, avatar_url, gender, country, province, city, phone_number, qr_code_url, create_by, create_time, update_by, update_time, remark from bzh_wechat_user
     </sql>
 
     <select id="selectBzhWechatUserList" parameterType="BzhWechatUser" resultMap="BzhWechatUserResult">
@@ -58,8 +58,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="country != null and country != ''">country,</if>
             <if test="province != null and province != ''">province,</if>
             <if test="city != null and city != ''">city,</if>
-            <if test="language != null and language != ''">language,</if>
             <if test="phoneNumber != null and phoneNumber != ''">phone_number,</if>
+            <if test="qrCodeUrl != null and qrCodeUrl != ''">qr_code_url,</if>
             <if test="createBy != null and createBy != ''">create_by,</if>
             <if test="createTime != null">create_time,</if>
             <if test="updateBy != null and updateBy != ''">update_by,</if>
@@ -75,8 +75,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="country != null and country != ''">#{country},</if>
             <if test="province != null and province != ''">#{province},</if>
             <if test="city != null and city != ''">#{city},</if>
-            <if test="language != null and language != ''">#{language},</if>
             <if test="phoneNumber != null and phoneNumber != ''">#{phoneNumber},</if>
+            <if test="qrCodeUrl != null and qrCodeUrl != ''">#{qrCodeUrl},</if>
             <if test="createBy != null and createBy != ''">#{createBy},</if>
             <if test="createTime != null">#{createTime},</if>
             <if test="updateBy != null and updateBy != ''">#{updateBy},</if>
@@ -96,8 +96,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="country != null and country != ''">country = #{country},</if>
             <if test="province != null and province != ''">province = #{province},</if>
             <if test="city != null and city != ''">city = #{city},</if>
-            <if test="language != null and language != ''">language = #{language},</if>
             <if test="phoneNumber != null and phoneNumber != ''">phone_number = #{phoneNumber},</if>
+            <if test="qrCodeUrl != null and qrCodeUrl != ''">qr_code_url = #{qrCodeUrl},</if>
             <if test="createBy != null and createBy != ''">create_by = #{createBy},</if>
             <if test="createTime != null">create_time = #{createTime},</if>
             <if test="updateBy != null and updateBy != ''">update_by = #{updateBy},</if>

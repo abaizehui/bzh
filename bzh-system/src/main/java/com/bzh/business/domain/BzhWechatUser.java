@@ -63,4 +63,6 @@ public class BzhWechatUser extends BaseEntity
     @Excel(name = "用户绑定的手机号码")
     private String phoneNumber;
 
+    /** 个人二维码 */
+    private String qrCodeUrl;
 }

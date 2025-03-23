@@ -43,7 +43,7 @@ public class BzhStoreReservation extends BaseEntity
 
     /** 姓名 */
     @Excel(name = "邀请人")
-    private String inviterOpenId;
+    private Long inviterUserId;
 
     /** 创建时间 */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

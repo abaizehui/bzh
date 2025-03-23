@@ -115,6 +115,11 @@ public class Constants
     public static final Integer EXPIRATION = 2;
 
     /**
+     * 缓存有效期（分钟）
+     */
+    public static final Integer NINETY = 90;
+
+    /**
      * 井号
      */
     public static final String WELL = "#";
@@ -123,6 +128,8 @@ public class Constants
      * 分享key
      */
     public static final String SUBMIT_SHARE_KEY = "submitShare:";
+
+    public static final String ACCESS_TOKEN = "accessToken";
 
     /**
      * 令牌

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * 读取项目相关配置
- * 
+ *
  * @author bzh
  */
 @Component
@@ -118,5 +118,13 @@ public class BzhConfig
     public static String getUploadPath()
     {
         return getProfile() + "/upload";
+    }
+
+    /**
+     * 获取二维码路径
+     */
+    public static String getQrCodePath()
+    {
+        return getProfile() + "/qrcode";
     }
 }
