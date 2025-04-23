@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bzh.business.mapper.BzhProductSetMapper">
+
+    <resultMap type="BzhProductSet" id="BzhProductSetResult">
+        <result property="id"    column="id"    />
+        <result property="storeId"    column="store_id"    />
+        <result property="productName"    column="product_name"    />
+        <result property="productDescribe"    column="product_describe"    />
+        <result property="productPrice"    column="product_price"    />
+        <result property="imageUrl"    column="image_url"    />
+        <result property="status"    column="status"    />
+        <result property="sortOrder"    column="sort_order"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="remark"    column="remark"    />
+    </resultMap>
+
+    <sql id="selectBzhProductSetVo">
+        select id, store_id, product_name, product_describe, product_price, image_url, status, sort_order, create_by, create_time, update_by, update_time, remark from bzh_product_set
+    </sql>
+
+    <select id="selectBzhProductSetList" parameterType="BzhProductSet" resultMap="BzhProductSetResult">
+        <include refid="selectBzhProductSetVo"/>
+        <where>
+            <if test="storeId != null "> and store_id = #{storeId}</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+        </where>
+    </select>
+
+    <select id="selectBzhProductSetById" parameterType="Long" resultMap="BzhProductSetResult">
+        <include refid="selectBzhProductSetVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="selectBzhProductBySetId" resultType="com.bzh.business.domain.BzhProduct">
+        select pt.id as id, pt.product_name as productName, pt.product_describe as productDescribe, pt.product_price as productPrice, pt.image_url as imageUrl
+        from bzh_product_set_item ps
+                 left join bzh_product pt on ps.product_id = pt.id
+        where ps.product_set_id = #{setId} and pt.status = '0' and ps.status = '0'
+    </select>
+
+    <insert id="insertBzhProductSet" parameterType="BzhProductSet" useGeneratedKeys="true" keyProperty="id">
+        insert into bzh_product_set
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="storeId != null">store_id,</if>
+            <if test="productName != null and productName != ''">product_name,</if>
+            <if test="productDescribe != null and productDescribe != ''">product_describe,</if>
+            <if test="productPrice != null">product_price,</if>
+            <if test="imageUrl != null">image_url,</if>
+            <if test="status != null">status,</if>
+            <if test="sortOrder != null">sort_order,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="storeId != null">#{storeId},</if>
+            <if test="productName != null and productName != ''">#{productName},</if>
+            <if test="productDescribe != null and productDescribe != ''">#{productDescribe},</if>
+            <if test="productPrice != null">#{productPrice},</if>
+            <if test="imageUrl != null">#{imageUrl},</if>
+            <if test="status != null">#{status},</if>
+            <if test="sortOrder != null">#{sortOrder},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+         </trim>
+    </insert>
+
+    <update id="updateBzhProductSet" parameterType="BzhProductSet">
+        update bzh_product_set
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="storeId != null">store_id = #{storeId},</if>
+            <if test="productName != null and productName != ''">product_name = #{productName},</if>
+            <if test="productDescribe != null and productDescribe != ''">product_describe = #{productDescribe},</if>
+            <if test="productPrice != null">product_price = #{productPrice},</if>
+            <if test="imageUrl != null">image_url = #{imageUrl},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="sortOrder != null">sort_order = #{sortOrder},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBzhProductSetById" parameterType="Long">
+        delete from bzh_product_set where id = #{id}
+    </delete>
+
+    <delete id="deleteBzhProductSetByIds" parameterType="String">
+        delete from bzh_product_set where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
