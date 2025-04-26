@@ -1,6 +1,9 @@
 package com.bzh.web.controller.wx;
 
+import com.bzh.business.domain.BzhStoreVideo;
 import com.bzh.business.service.IBzhStoreService;
+import com.bzh.business.service.IBzhStoreVideoService;
+import com.bzh.common.constant.Constants;
 import com.bzh.common.core.controller.BaseController;
 import com.bzh.common.core.domain.AjaxResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,9 @@ public class BzhWxStoreController extends BaseController
     @Autowired
     private IBzhStoreService bzhStoreService;
 
+    @Autowired
+    private IBzhStoreVideoService bzhStoreVideoService;
+
     /**
      * 根据appid查询门店
      */
@@ -31,5 +37,20 @@ public class BzhWxStoreController extends BaseController
     {
         return success(bzhStoreService.getStoreByAppId(appId));
     }
+
+    /**
+     * 根据storeId查询门店s视频
+     */
+    @GetMapping("/getStoreVideoByStoreId")
+    public AjaxResult getStoreVideoByStoreId(@RequestParam("storeId") Long storeId)
+    {
+        BzhStoreVideo bzhStoreVideo = new BzhStoreVideo();
+        bzhStoreVideo.setStoreId(storeId);
+        bzhStoreVideo.setStatus(Constants.STATUS_YES);
+        return success(bzhStoreVideoService.selectBzhStoreVideoList(bzhStoreVideo));
+    }
+
+
+
 
 }

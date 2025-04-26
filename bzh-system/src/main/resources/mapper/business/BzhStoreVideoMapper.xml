@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bzh.business.mapper.BzhStoreVideoMapper">
-    
+
     <resultMap type="BzhStoreVideo" id="BzhStoreVideoResult">
         <result property="id"    column="id"    />
         <result property="storeId"    column="store_id"    />
@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <select id="selectBzhStoreVideoList" parameterType="BzhStoreVideo" resultMap="BzhStoreVideoResult">
         <include refid="selectBzhStoreVideoVo"/>
-        <where>  
+        <where>
             <if test="storeId != null "> and store_id = #{storeId}</if>
             <if test="imageUrl != null  and imageUrl != ''"> and image_url = #{imageUrl}</if>
             <if test="videoUrl != null  and videoUrl != ''"> and video_url = #{videoUrl}</if>
@@ -35,8 +35,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="status != null  and status != ''"> and status = #{status}</if>
             <if test="sortOrder != null "> and sort_order = #{sortOrder}</if>
         </where>
+        order by sort_order asc
     </select>
-    
+
     <select id="selectBzhStoreVideoById" parameterType="Long" resultMap="BzhStoreVideoResult">
         <include refid="selectBzhStoreVideoVo"/>
         where id = #{id}
@@ -98,7 +99,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </delete>
 
     <delete id="deleteBzhStoreVideoByIds" parameterType="String">
-        delete from bzh_store_video where id in 
+        delete from bzh_store_video where id in
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>
