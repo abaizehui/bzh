@@ -10,19 +10,19 @@ import com.bzh.business.service.IBzhStoreVideoService;
 
 /**
  * 门店视频Service业务层处理
- * 
+ *
  * @author bzh
  * @date 2025-04-23
  */
 @Service
-public class BzhStoreVideoServiceImpl implements IBzhStoreVideoService 
+public class BzhStoreVideoServiceImpl implements IBzhStoreVideoService
 {
     @Autowired
     private BzhStoreVideoMapper bzhStoreVideoMapper;
 
     /**
      * 查询门店视频
-     * 
+     *
      * @param id 门店视频主键
      * @return 门店视频
      */
@@ -34,7 +34,7 @@ public class BzhStoreVideoServiceImpl implements IBzhStoreVideoService
 
     /**
      * 查询门店视频列表
-     * 
+     *
      * @param bzhStoreVideo 门店视频
      * @return 门店视频
      */
@@ -46,7 +46,7 @@ public class BzhStoreVideoServiceImpl implements IBzhStoreVideoService
 
     /**
      * 新增门店视频
-     * 
+     *
      * @param bzhStoreVideo 门店视频
      * @return 结果
      */
@@ -59,7 +59,7 @@ public class BzhStoreVideoServiceImpl implements IBzhStoreVideoService
 
     /**
      * 修改门店视频
-     * 
+     *
      * @param bzhStoreVideo 门店视频
      * @return 结果
      */
@@ -72,7 +72,7 @@ public class BzhStoreVideoServiceImpl implements IBzhStoreVideoService
 
     /**
      * 批量删除门店视频
-     * 
+     *
      * @param ids 需要删除的门店视频主键
      * @return 结果
      */
@@ -84,7 +84,7 @@ public class BzhStoreVideoServiceImpl implements IBzhStoreVideoService
 
     /**
      * 删除门店视频信息
-     * 
+     *
      * @param id 门店视频主键
      * @return 结果
      */
@@ -92,5 +92,10 @@ public class BzhStoreVideoServiceImpl implements IBzhStoreVideoService
     public int deleteBzhStoreVideoById(Long id)
     {
         return bzhStoreVideoMapper.deleteBzhStoreVideoById(id);
+    }
+
+    @Override
+    public void updateStoreVideoPlayById(Long storeVideoId) {
+        bzhStoreVideoMapper.updateStoreVideoPlayById(storeVideoId);
     }
 }

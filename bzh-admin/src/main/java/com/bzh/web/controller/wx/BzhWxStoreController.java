@@ -50,6 +50,16 @@ public class BzhWxStoreController extends BaseController
         return success(bzhStoreVideoService.selectBzhStoreVideoList(bzhStoreVideo));
     }
 
+    /**
+     * 根据storeId修改视频观看数量
+     */
+    @GetMapping("/updateStoreVideoPlayById")
+    public AjaxResult updateStoreVideoPlayById(@RequestParam("storeVideoId") Long storeVideoId)
+    {
+        bzhStoreVideoService.updateStoreVideoPlayById(storeVideoId);
+        return success();
+    }
+
 
 
 

@@ -5,15 +5,15 @@ import com.bzh.business.domain.BzhStoreVideo;
 
 /**
  * 门店视频Service接口
- * 
+ *
  * @author bzh
  * @date 2025-04-23
  */
-public interface IBzhStoreVideoService 
+public interface IBzhStoreVideoService
 {
     /**
      * 查询门店视频
-     * 
+     *
      * @param id 门店视频主键
      * @return 门店视频
      */
@@ -21,7 +21,7 @@ public interface IBzhStoreVideoService
 
     /**
      * 查询门店视频列表
-     * 
+     *
      * @param bzhStoreVideo 门店视频
      * @return 门店视频集合
      */
@@ -29,7 +29,7 @@ public interface IBzhStoreVideoService
 
     /**
      * 新增门店视频
-     * 
+     *
      * @param bzhStoreVideo 门店视频
      * @return 结果
      */
@@ -37,7 +37,7 @@ public interface IBzhStoreVideoService
 
     /**
      * 修改门店视频
-     * 
+     *
      * @param bzhStoreVideo 门店视频
      * @return 结果
      */
@@ -45,7 +45,7 @@ public interface IBzhStoreVideoService
 
     /**
      * 批量删除门店视频
-     * 
+     *
      * @param ids 需要删除的门店视频主键集合
      * @return 结果
      */
@@ -53,9 +53,11 @@ public interface IBzhStoreVideoService
 
     /**
      * 删除门店视频信息
-     * 
+     *
      * @param id 门店视频主键
      * @return 结果
      */
     public int deleteBzhStoreVideoById(Long id);
+
+    void updateStoreVideoPlayById(Long storeVideoId);
 }

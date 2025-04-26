@@ -58,4 +58,6 @@ public interface BzhStoreVideoMapper
      * @return 结果
      */
     public int deleteBzhStoreVideoByIds(Long[] ids);
+
+    void updateStoreVideoPlayById(Long storeVideoId);
 }
