@@ -12,6 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="productDescribe"    column="product_describe"    />
         <result property="productPrice"    column="product_price"    />
         <result property="imageUrl"    column="image_url"    />
+        <result property="videoUrl"    column="video_url"    />
         <result property="recommend"    column="recommend"    />
         <result property="status"    column="status"    />
         <result property="sortOrder"    column="sort_order"    />
@@ -23,7 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectBzhProductVo">
-        select id, category_id, store_id, product_name, product_describe,product_price, image_url, recommend, status, sort_order,
+        select id, category_id, store_id, product_name, product_describe,product_price, image_url,video_url, recommend, status, sort_order,
                create_by, create_time, update_by, update_time, remark from bzh_product
     </sql>
 
@@ -72,6 +73,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="productDescribe != null and productDescribe != ''">product_describe,</if>
             <if test="productPrice != null">product_price,</if>
             <if test="imageUrl != null and imageUrl != ''">image_url,</if>
+            <if test="videoUrl != null and videoUrl != ''">video_url,</if>
             <if test="recommend != null and recommend != ''">recommend,</if>
             <if test="status != null">status,</if>
             <if test="sortOrder != null">sort_order,</if>
@@ -88,6 +90,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="productDescribe != null and productDescribe != ''">#{productDescribe},</if>
             <if test="productPrice != null">#{productPrice},</if>
             <if test="imageUrl != null and imageUrl != ''">#{imageUrl},</if>
+            <if test="videoUrl != null and videoUrl != ''">#{videoUrl},</if>
             <if test="recommend != null and recommend != ''">#{recommend},</if>
             <if test="status != null and status != ''">#{status},</if>
             <if test="sortOrder != null">#{sortOrder},</if>
@@ -108,6 +111,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="productDescribe != null and productDescribe != ''">product_describe = #{productDescribe},</if>
             <if test="productPrice != null">product_price = #{productPrice},</if>
             <if test="imageUrl != null and imageUrl != ''">image_url = #{imageUrl},</if>
+            <if test="videoUrl != null and videoUrl != ''">video_url = #{videoUrl},</if>
             <if test="recommend != null and recommend != ''">recommend = #{recommend},</if>
             <if test="status != null and status != ''">status = #{status},</if>
             <if test="sortOrder != null">sort_order = #{sortOrder},</if>
